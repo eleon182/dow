@@ -1,0 +1,45 @@
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#build folder
+build
+bin
+.gradle
+vag
+gradle/wrapper/gradle-wrapper.jar
+
+#in case we run from the dist folder
+src/dist/com
+/newcorvette
+/com
+/backup
+*.bak
+*~
+*.pid
+*.logbak/
+bak/
+/eipi
+/offer
+/.idea
+corvette-offers.iml
+/.nb-gradle/
