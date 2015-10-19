@@ -6,7 +6,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 /**
  * Created by steve on 10/18/15.
  */
-@DynamoDBTable(tableName = "cow-user-profile")
+@DynamoDBTable(tableName = "dow-user-profile")
 public class UserProfileDAO{
 
     private String username;

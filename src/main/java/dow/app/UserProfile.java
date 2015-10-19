@@ -13,8 +13,7 @@ public class UserProfile {
         userProfileBO = new UserProfileBO();
     }
 
-    public UserProfileTO getUserProfile(String username){
-
+    public UserProfileTO getUserProfile(String username) {
         return userProfileBO.getUserProfileData(username);
     }
 }

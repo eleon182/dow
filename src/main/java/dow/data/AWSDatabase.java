@@ -22,6 +22,8 @@ public class AWSDatabase {
     }
 
     DynamoDBMapper getMapper(){
+
         return mapper;
     }
+
 }
