@@ -1,26 +1,23 @@
 package dow.bo;
 
 import dow.bo.to.UserProfileTO;
-import dow.data.dao.UserProfileDAO;
 import dow.data.UserProfileData;
+import dow.data.dao.UserProfileDAO;
 
 /**
  * Created by steve on 10/18/15.
  */
 public class UserProfileBO {
-    UserProfileData userProfileData;
+    UserProfileData userProfileData = new UserProfileData();
 
-    public UserProfileBO() {
-        userProfileData = new UserProfileData();
-    }
+    public UserProfileTO getUserProfileData(String username) {
+        UserProfileDAO temp = userProfileData.getUserData(username);
 
-    public UserProfileTO getUserProfileData(String username){
-        UserProfileDAO temp;
         UserProfileTO response = new UserProfileTO();
 
-        temp = userProfileData.getUserData(username);
-
-        response.setUsername(temp.getUsername());
+        if(temp != null){
+            response.setUsername(temp.getUsername());
+        }
         return response;
     }
 }

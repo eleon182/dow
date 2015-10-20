@@ -7,22 +7,17 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by steve on 10/18/15.
- */
 @RequestMapping("/userprofile")
 @RestController
 public class UserProfileResource extends MainResource {
 
-    UserProfile userProfile;
+    UserProfile userProfile = new UserProfile();
 
     public UserProfileResource() {
-        userProfile = new UserProfile();
     }
 
     @RequestMapping("/getdetails")
-    ResponseEntity<?> getDetails(@RequestHeader(value="x-customerid") String customerid) {
-        String t = customerid;
+    ResponseEntity<?> getDetails(@RequestHeader(value = "x-customerid") String customerid) {
         return new ResponseEntity<>(userProfile.getUserProfile(customerid), HttpStatus.OK);
     }
 }

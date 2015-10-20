@@ -1,17 +1,22 @@
 package dow.resource;
 
-import dow.data.AWSDatabase;
+import dow.app.GameBoard;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/check")
+/**
+ * Created by steve on 10/19/15.
+ */
+@RequestMapping("/gameboard")
 @RestController
-public class MainResource {
-    @RequestMapping("/tables")
+public class GameBoardResource extends MainResource {
+
+    GameBoard gameBoard = new GameBoard();
+
+    @RequestMapping("/get")
     ResponseEntity<?> getDetails() {
-        AWSDatabase temp = new AWSDatabase();
-        return new ResponseEntity<>(temp.listTables(), HttpStatus.OK);
+        return new ResponseEntity<>(gameBoard.getGameBoard(), HttpStatus.OK);
     }
 }

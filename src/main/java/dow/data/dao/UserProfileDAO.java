@@ -40,7 +40,13 @@ public class UserProfileDAO{
     private String updateDate;
 
     @DynamoDBHashKey
-    public String getUsername() { return username; }
+    public String getUsername() {
+        String response = "";
+        if(username != null){
+            response = username;
+        }
+        return response;
+    }
     public void setUsername(String username) { this.username = username; }
 
 }
