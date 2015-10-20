@@ -1,5 +1,6 @@
 package dow.data;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import dow.data.dao.UserProfileDAO;
 import org.joda.time.DateTime;
 
@@ -22,6 +23,6 @@ public class UserProfileData extends AWSDatabase {
     }
 
     public void save(UserProfileDAO user){
-        getMapper().save(user);
+        getMapper().save(user, new DynamoDBMapperConfig(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES));
     }
 }

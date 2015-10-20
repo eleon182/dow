@@ -31,13 +31,13 @@ public class UserProfileResource extends MainResource {
 
     @RequestMapping(value="/activate", method= RequestMethod.POST)
     ResponseEntity<?> activateAccount(@RequestBody ActivateAccountFO body, @RequestHeader(value = "Authorization") String token) {
-        userProfile.validateUser(body, token);
+        userProfile.activateUser(body, token);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @RequestMapping("/checkvalidation")
-    ResponseEntity<?> checkValidation(@RequestHeader(value = "Authorization") String token) {
-        if (userProfile.checkValidated(token)) {
+    @RequestMapping("/checkactivation")
+    ResponseEntity<?> checkActivation(@RequestHeader(value = "Authorization") String token) {
+        if (userProfile.checkActivation(token)) {
             return new ResponseEntity<>("validated", HttpStatus.OK);
         }
         else {

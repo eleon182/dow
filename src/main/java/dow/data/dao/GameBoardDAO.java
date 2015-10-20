@@ -3,7 +3,6 @@ package dow.data.dao;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import dow.defaults.UnitTypes;
 
 /**
  * Created by steve on 10/18/15.
@@ -13,14 +12,14 @@ public class GameBoardDAO {
 
     private String x;
     private String owner;
-    public UnitTypes unitType;
+    private String unitType;
     private int unitHealth;
 
     public String getUnitType() {
-        return unitType.toString();
+        return unitType;
     }
 
-    public void setUnitType(UnitTypes unitType) {
+    public void setUnitType(String unitType) {
         this.unitType = unitType;
     }
 

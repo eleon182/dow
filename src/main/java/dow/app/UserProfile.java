@@ -25,7 +25,7 @@ public class UserProfile extends BaseApp{
         return userProfileBO.validateToken(token);
     }
 
-    public void validateUser(ActivateAccountFO body, String token){
+    public void activateUser(ActivateAccountFO body, String token){
         UserProfileDAO temp = new UserProfileDAO();
         String username =  getUsernameFromToken(token);
 
@@ -39,7 +39,7 @@ public class UserProfile extends BaseApp{
         return userProfileBO.addUser(username, password);
     }
 
-    public boolean checkValidated(String token){
+    public boolean checkActivation(String token){
         return userProfileBO.checkActivated(getUsernameFromToken(token));
     }
 }

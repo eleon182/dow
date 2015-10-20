@@ -24,12 +24,10 @@ public class GameBoardBO {
         GameBoardDAO gameBoardTemp = new GameBoardDAO();
 
         gameBoardTemp.setOwner(username);
-        gameBoardTemp.setUnitType(UnitTypes.WORKER);
+        gameBoardTemp.setUnitType(UnitTypes.WORKER.toString());
         gameBoardTemp.setUnitHealth(100);
         gameBoardTemp.setX(x);
         gameBoardTemp.setY(y);
         gameBoardData.saveSector(gameBoardTemp);
     }
-
-
 }

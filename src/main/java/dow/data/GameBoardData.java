@@ -1,5 +1,6 @@
 package dow.data;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import dow.data.dao.GameBoardDAO;
 
@@ -14,7 +15,7 @@ public class GameBoardData extends AWSDatabase {
     }
 
     public void saveSector(GameBoardDAO sector){
-        getMapper().save(sector);
+        getMapper().save(sector, new DynamoDBMapperConfig(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES));
     }
 
 }
