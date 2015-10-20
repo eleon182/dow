@@ -11,6 +11,15 @@ public class UserProfileDAO{
 
     private String username;
     private String password;
+    private boolean activated;
+
+    public boolean getActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 
     public String getPassword() {
         return password;

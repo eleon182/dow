@@ -32,13 +32,25 @@ public class UserProfileBO {
         }
     }
 
+    public String getUsername(String token){
+        return userTokenData.getUsername(token);
+    }
+
+    public boolean checkActivated(String username){
+        return userProfileData.getUserData(username).getActivated();
+    }
+
     public boolean validateToken(String token) {
         return userTokenData.validateToken(token);
     }
 
     public String addUser(String username, String password) {
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-        userProfileData.addUser(username, hashed);
-        return userTokenData.createToken(username);
+        if(userProfileData.getUserData(username)!=null){
+            return null;
+        }
+        else {
+            userProfileData.addUser(username, BCrypt.hashpw(password, BCrypt.gensalt(12)));
+            return userTokenData.createToken(username);
+        }
     }
 }

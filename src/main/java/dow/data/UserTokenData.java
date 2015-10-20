@@ -21,6 +21,17 @@ public class UserTokenData extends AWSDatabase{
         }
     }
 
+    public String getUsername(String token){
+        UserTokenDAO dao = getMapper().load(UserTokenDAO.class, token);
+
+        if(dao != null) {
+            return dao.getUsername();
+        }
+        else {
+            return null;
+        }
+    }
+
     public String createToken(String username){
         String token = UUID.randomUUID().toString();
         String createDate = new DateTime().toDateTimeISO().toString();

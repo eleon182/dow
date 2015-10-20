@@ -12,7 +12,6 @@ public class UserProfileData extends AWSDatabase {
 
     public void addUser(String username, String password) {
         UserProfileDAO add = new UserProfileDAO();
-
         add.setUsername(username);
         add.setPassword(password);
         getMapper().save(add);

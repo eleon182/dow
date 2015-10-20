@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/check")
 @RestController
 public class MainResource {
+
     @RequestMapping("/tables")
     ResponseEntity<?> getDetails() {
         AWSDatabase temp = new AWSDatabase();
         return new ResponseEntity<>(temp.listTables(), HttpStatus.OK);
     }
+
 }

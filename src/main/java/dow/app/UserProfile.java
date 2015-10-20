@@ -6,7 +6,7 @@ import dow.bo.to.UserProfileTO;
 /**
  * Created by steve on 10/18/15.
  */
-public class UserProfile {
+public class UserProfile extends BaseApp{
     UserProfileBO userProfileBO = new UserProfileBO();
 
     public UserProfileTO getUserProfile(String username) {
@@ -23,5 +23,9 @@ public class UserProfile {
 
     public String addUser(String username, String password) {
         return userProfileBO.addUser(username, password);
+    }
+
+    public boolean checkValidated(String token){
+        return userProfileBO.checkActivated(getUsernameFromToken(token));
     }
 }
