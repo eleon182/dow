@@ -12,6 +12,20 @@ public class UserProfileDAO{
     private String username;
     private String password;
     private boolean activated;
+    private int gold;
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public boolean isActivated() {
+
+        return activated;
+    }
 
     public boolean getActivated() {
         return activated;

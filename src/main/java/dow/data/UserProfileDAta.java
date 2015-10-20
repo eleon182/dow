@@ -1,6 +1,7 @@
 package dow.data;
 
 import dow.data.dao.UserProfileDAO;
+import org.joda.time.DateTime;
 
 /**
  * Created by steve on 10/18/15.
@@ -14,6 +15,9 @@ public class UserProfileData extends AWSDatabase {
         UserProfileDAO add = new UserProfileDAO();
         add.setUsername(username);
         add.setPassword(password);
+        add.setGold(1000);
+        add.setCreateDate(new DateTime().toDateTimeISO().toString());
+        add.setUpdateDate(new DateTime().toDateTimeISO().toString());
         getMapper().save(add);
     }
 

@@ -8,7 +8,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -19,22 +18,18 @@ public class AWSDatabase {
     private AmazonDynamoDB aws;
 
     public AWSDatabase() {
-         aws = new AmazonDynamoDBClient(new ProfilesConfigFile().getCredentials("steve"));
+        aws = new AmazonDynamoDBClient(new ProfilesConfigFile().getCredentials("steve"));
         aws.setRegion(Region.getRegion(Regions.US_WEST_2));
         mapper = new DynamoDBMapper(aws);
     }
 
-    DynamoDBMapper getMapper(){
+    DynamoDBMapper getMapper() {
         return mapper;
     }
 
-    public List<String> listTables(){
-        ListTablesResult result  = aws.listTables();
-        List<String> t = result.getTableNames();
-        for (Iterator<String> iterator = t.iterator(); iterator.hasNext(); ) {
-            String next = iterator.next();
-        }
-        return t;
+    public List<String> listTables() {
+        ListTablesResult result = aws.listTables();
+        return result.getTableNames();
     }
 
 }

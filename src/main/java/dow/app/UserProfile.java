@@ -3,9 +3,7 @@ package dow.app;
 import dow.bo.GameBoardBO;
 import dow.bo.UserProfileBO;
 import dow.bo.to.UserProfileTO;
-import dow.data.dao.GameBoardDAO;
 import dow.data.dao.UserProfileDAO;
-import dow.defaults.UnitTypes;
 import dow.resource.FO.ActivateAccountFO;
 
 /**
@@ -34,15 +32,7 @@ public class UserProfile extends BaseApp{
         temp.setUsername(username);
         temp.setActivated(true);
         userProfileBO.save(temp);
-
-        GameBoardDAO gameBoardTemp = new GameBoardDAO();
-
-        gameBoardTemp.setOwner(username);
-        gameBoardTemp.setUnitType(UnitTypes.WORKER);
-        gameBoardTemp.setUnitHealth(100);
-        gameBoardTemp.setX(body.getX());
-        gameBoardTemp.setY(body.getY());
-        gameBoardBO.updateSector(gameBoardTemp);
+        gameBoardBO.activateUser(username, body.getX(), body.getY());
     }
 
     public String addUser(String username, String password) {

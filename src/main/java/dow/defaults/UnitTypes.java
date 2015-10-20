@@ -7,5 +7,7 @@ public enum UnitTypes {
     WORKER,
     MARINE,
     MEDIC,
+    FACTORY,
+    GENERATOR,
     SNIPER
 }

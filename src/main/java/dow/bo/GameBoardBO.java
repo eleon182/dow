@@ -2,6 +2,7 @@ package dow.bo;
 
 import dow.data.GameBoardData;
 import dow.data.dao.GameBoardDAO;
+import dow.defaults.UnitTypes;
 
 import java.util.List;
 
@@ -18,4 +19,17 @@ public class GameBoardBO {
     public void updateSector(GameBoardDAO sector){
         gameBoardData.saveSector(sector);
     }
+
+    public void activateUser(String username, String x, String y){
+        GameBoardDAO gameBoardTemp = new GameBoardDAO();
+
+        gameBoardTemp.setOwner(username);
+        gameBoardTemp.setUnitType(UnitTypes.WORKER);
+        gameBoardTemp.setUnitHealth(100);
+        gameBoardTemp.setX(x);
+        gameBoardTemp.setY(y);
+        gameBoardData.saveSector(gameBoardTemp);
+    }
+
+
 }
