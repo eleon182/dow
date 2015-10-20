@@ -21,6 +21,7 @@ dependencies {
     compile ('com.amazonaws:aws-java-sdk:1.10.11')
     compile ("org.springframework.boot:spring-boot-starter-web")
     compile ("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    compile ("joda-time:joda-time:2.2")
 }
 
 sourceCompatibility = 1.8
