@@ -30,7 +30,8 @@ public class UserProfileResource extends MainResource {
 
     @RequestMapping(value="/registration", method= RequestMethod.POST)
     String registration(@RequestBody LoginFO body) {
-        return userProfile.addUser(body.getUsername(), body.getPassword());
+        String response = userProfile.addUser(body.getUsername(), body.getPassword());
+        return response;
     }
 
 

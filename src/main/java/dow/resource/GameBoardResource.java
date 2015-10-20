@@ -19,7 +19,7 @@ public class GameBoardResource extends MainResource {
     UserProfile userProfile = new UserProfile();
 
     @RequestMapping("/getdetails")
-    ResponseEntity<?> getDetails(@RequestHeader(value = "Authentication") String token) {
+    ResponseEntity<?> getDetails(@RequestHeader(value = "Authorization") String token) {
         if (userProfile.validateToken(token)) {
             return new ResponseEntity<>(gameBoard.getGameBoard(), HttpStatus.OK);
         }

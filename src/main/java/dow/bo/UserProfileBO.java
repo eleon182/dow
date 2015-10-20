@@ -18,35 +18,27 @@ public class UserProfileBO {
 
         UserProfileTO response = new UserProfileTO();
 
-        if(temp != null){
+        if (temp != null) {
             response.setUsername(temp.getUsername());
         }
         return response;
     }
 
-    public String getToken(String username, String password){
-        if(!BCrypt.checkpw(password, userProfileData.getUserData(username).getPassword())){
+    public String getToken(String username, String password) {
+        if (!BCrypt.checkpw(password, userProfileData.getUserData(username).getPassword())) {
             return null;
-        }
-        else {
+        } else {
             return userTokenData.createToken(username);
         }
     }
 
-    public boolean validateToken(String token){
+    public boolean validateToken(String token) {
         return userTokenData.validateToken(token);
     }
 
-
-    public String addUser(String username, String password){
+    public String addUser(String username, String password) {
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-        UserProfileDAO temp = userProfileData.getUserData(username);
-        if(temp != null){
-            return null;
-        }
-        else {
-            userProfileData.addUser(username, hashed);
-            return userTokenData.createToken(username);
-        }
+        userProfileData.addUser(username, hashed);
+        return userTokenData.createToken(username);
     }
 }
