@@ -1,6 +1,7 @@
 package dow.resource;
 
 import dow.app.UserProfile;
+import dow.resource.FO.ActivateAccountFO;
 import dow.resource.FO.LoginFO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,15 @@ public class UserProfileResource extends MainResource {
         }
     }
 
+
+    @RequestMapping(value="/activate", method= RequestMethod.POST)
+    ResponseEntity<?> activateAccount(@RequestBody ActivateAccountFO body, @RequestHeader(value = "Authorization") String token) {
+        userProfile.validateUser(body, token);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
     @RequestMapping("/checkvalidation")
-    ResponseEntity<?> getDetails(@RequestHeader(value = "Authorization") String token) {
+    ResponseEntity<?> checkValidation(@RequestHeader(value = "Authorization") String token) {
         if (userProfile.checkValidated(token)) {
             return new ResponseEntity<>("validated", HttpStatus.OK);
         }

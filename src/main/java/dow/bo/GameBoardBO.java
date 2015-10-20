@@ -14,4 +14,8 @@ public class GameBoardBO {
     public List<GameBoardDAO> getGameBoardData(){
         return gameBoardData.getGameBoard();
     }
+
+    public void updateSector(GameBoardDAO sector){
+        gameBoardData.saveSector(sector);
+    }
 }

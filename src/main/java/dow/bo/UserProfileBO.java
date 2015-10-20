@@ -44,6 +44,10 @@ public class UserProfileBO {
         return userTokenData.validateToken(token);
     }
 
+    public void save(UserProfileDAO user){
+        userProfileData.save(user);
+    }
+
     public String addUser(String username, String password) {
         if(userProfileData.getUserData(username)!=null){
             return null;
