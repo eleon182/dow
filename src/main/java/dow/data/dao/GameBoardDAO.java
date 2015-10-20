@@ -11,6 +11,15 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 public class GameBoardDAO {
 
     private String x;
+    private String owner;
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     @DynamoDBHashKey
     public String getX() {
