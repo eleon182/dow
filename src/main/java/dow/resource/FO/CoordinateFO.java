@@ -3,7 +3,7 @@ package dow.resource.FO;
 /**
  * Created by steve on 10/19/15.
  */
-public class ActivateAccountFO {
+public class CoordinateFO{
     private String x;
     private String y;
 

@@ -12,7 +12,7 @@ public class UserProfileDAO{
     private String username;
     private String password;
     private boolean activated;
-    private int gold;
+    private Integer gold;
 
     public int getGold() {
         return gold;

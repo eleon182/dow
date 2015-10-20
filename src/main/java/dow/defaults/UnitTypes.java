@@ -8,6 +8,6 @@ public enum UnitTypes {
     MARINE,
     MEDIC,
     FACTORY,
-    GENERATOR,
+    SUPPLYDEPOT,
     SNIPER
 }

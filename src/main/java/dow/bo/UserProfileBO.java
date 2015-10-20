@@ -57,4 +57,31 @@ public class UserProfileBO {
             return userTokenData.createToken(username);
         }
     }
+
+    public boolean checkEnoughGold(String username, int  gold){
+        UserProfileDAO user = userProfileData.getUserData(username);
+
+        if(user.getGold() > gold){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public void chargeGold(String username, int gold){
+        UserProfileDAO user = userProfileData.getUserData(username);
+
+        int newGold = user.getGold();
+
+        if(newGold > gold){
+            newGold = 0;
+        }
+        else {
+            newGold = newGold-gold;
+        }
+
+        user.setGold(newGold);
+        userProfileData.save(user);
+    }
 }

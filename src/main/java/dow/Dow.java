@@ -8,13 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Dow {
-
     public static void main(String[] args) {
         SpringApplication.run(Dow.class, args);
-
     }
-
-
 }
-
-

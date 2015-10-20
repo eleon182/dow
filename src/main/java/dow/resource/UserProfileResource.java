@@ -1,7 +1,7 @@
 package dow.resource;
 
 import dow.app.UserProfile;
-import dow.resource.FO.ActivateAccountFO;
+import dow.resource.FO.CoordinateFO;
 import dow.resource.FO.LoginFO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class UserProfileResource extends MainResource {
 
 
     @RequestMapping(value="/activate", method= RequestMethod.POST)
-    ResponseEntity<?> activateAccount(@RequestBody ActivateAccountFO body, @RequestHeader(value = "Authorization") String token) {
+    ResponseEntity<?> activateAccount(@RequestBody CoordinateFO body, @RequestHeader(value = "Authorization") String token) {
         userProfile.activateUser(body, token);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

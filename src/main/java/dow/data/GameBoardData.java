@@ -14,6 +14,10 @@ public class GameBoardData extends AWSDatabase {
         return getMapper().scan(GameBoardDAO.class, new DynamoDBScanExpression());
     }
 
+    public GameBoardDAO getSector(GameBoardDAO sector){
+        return getMapper().load(GameBoardDAO.class, sector);
+    }
+
     public void saveSector(GameBoardDAO sector){
         getMapper().save(sector, new DynamoDBMapperConfig(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES));
     }

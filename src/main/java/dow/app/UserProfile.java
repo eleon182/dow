@@ -1,17 +1,13 @@
 package dow.app;
 
-import dow.bo.GameBoardBO;
-import dow.bo.UserProfileBO;
 import dow.bo.to.UserProfileTO;
 import dow.data.dao.UserProfileDAO;
-import dow.resource.FO.ActivateAccountFO;
+import dow.resource.FO.CoordinateFO;
 
 /**
  * Created by steve on 10/18/15.
  */
 public class UserProfile extends BaseApp{
-    UserProfileBO userProfileBO = new UserProfileBO();
-    GameBoardBO gameBoardBO = new GameBoardBO();
 
     public UserProfileTO getUserProfile(String username) {
         return userProfileBO.getUserProfileData(username);
@@ -25,7 +21,7 @@ public class UserProfile extends BaseApp{
         return userProfileBO.validateToken(token);
     }
 
-    public void activateUser(ActivateAccountFO body, String token){
+    public void activateUser(CoordinateFO body, String token){
         UserProfileDAO temp = new UserProfileDAO();
         String username =  getUsernameFromToken(token);
 

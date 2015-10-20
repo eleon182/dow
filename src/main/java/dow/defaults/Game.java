@@ -8,4 +8,7 @@ public class Game {
 
     public static final int maxRows= 10;
     public static final int maxColumns = 10;
+    public static final int factoryPrice = 300;
+    public static final int supplyDepotPrice = 200;
+
 }
