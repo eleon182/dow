@@ -14,16 +14,15 @@ public class UserProfileDAO{
     private boolean activated;
     private Integer gold;
 
-    public int getGold() {
+    public Integer getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(Integer gold) {
         this.gold = gold;
     }
 
     public boolean isActivated() {
-
         return activated;
     }
 

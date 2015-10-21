@@ -1,6 +1,6 @@
 package dow.app;
 
-import dow.defaults.Game;
+import dow.defaults.GameConstants;
 import dow.resource.FO.CoordinateFO;
 
 /**
@@ -10,8 +10,8 @@ public class Purchase extends BaseApp {
 
     public boolean buySupplyDepot(CoordinateFO coord, String token) {
         String username = getUsernameFromToken(token);
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, Game.supplyDepotPrice)) {
-            userProfileBO.chargeGold(username, Game.supplyDepotPrice);
+        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, GameConstants.supplyDepotPrice)) {
+            userProfileBO.chargeGold(username, GameConstants.supplyDepotPrice);
             gameBoardBO.buySupplyDepot(username, coord);
             return true;
         } else {
@@ -21,8 +21,8 @@ public class Purchase extends BaseApp {
 
     public boolean buyFactory(CoordinateFO coord, String token) {
         String username = getUsernameFromToken(token);
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, Game.factoryPrice)) {
-            userProfileBO.chargeGold(username, Game.factoryPrice);
+        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, GameConstants.factoryPrice)) {
+            userProfileBO.chargeGold(username, GameConstants.factoryPrice);
             gameBoardBO.buyFactory(username, coord);
             return true;
         } else {

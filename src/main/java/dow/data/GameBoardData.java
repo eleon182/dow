@@ -3,6 +3,7 @@ package dow.data;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import dow.data.dao.GameBoardDAO;
+import dow.defaults.GameConstants;
 
 import java.util.List;
 
@@ -18,8 +19,13 @@ public class GameBoardData extends AWSDatabase {
         return getMapper().load(GameBoardDAO.class, sector);
     }
 
-    public void saveSector(GameBoardDAO sector){
-        getMapper().save(sector, new DynamoDBMapperConfig(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES));
+    public boolean saveSector(GameBoardDAO sector){
+        if(Integer.parseInt(sector.getX()) > GameConstants.maxRows || Integer.parseInt(sector.getY()) > GameConstants.maxColumns){
+            return false;
+        }
+        else {
+            getMapper().save(sector, new DynamoDBMapperConfig(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES));
+            return true;
+        }
     }
-
 }

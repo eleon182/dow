@@ -25,7 +25,8 @@ public class UserProfileBO {
     }
 
     public String getToken(String username, String password) {
-        if (!BCrypt.checkpw(password, userProfileData.getUserData(username).getPassword())) {
+        UserProfileDAO user = userProfileData.getUserData(username);
+        if (user==null || !BCrypt.checkpw(password, user.getPassword())) {
             return null;
         } else {
             return userTokenData.createToken(username);

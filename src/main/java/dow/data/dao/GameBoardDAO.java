@@ -13,7 +13,7 @@ public class GameBoardDAO {
     private String x;
     private String owner;
     private String unitType;
-    private int unitHealth;
+    private Integer unitHealth;
 
     public String getUnitType() {
         return unitType;
@@ -23,11 +23,11 @@ public class GameBoardDAO {
         this.unitType = unitType;
     }
 
-    public int getUnitHealth() {
+    public Integer getUnitHealth() {
         return unitHealth;
     }
 
-    public void setUnitHealth(int unitHealth) {
+    public void setUnitHealth(Integer unitHealth) {
         this.unitHealth = unitHealth;
     }
 
@@ -56,13 +56,13 @@ public class GameBoardDAO {
     }
 
     private String y;
-    private int gold;
+    private Integer gold;
 
-    public int getGold() {
+    public Integer getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(Integer gold) {
         this.gold = gold;
     }
 }
