@@ -1,7 +1,6 @@
 package dow.app;
 
 import dow.bo.to.UserProfileTO;
-import dow.data.dao.UserProfileDAO;
 import dow.resource.FO.CoordinateFO;
 
 /**
@@ -22,12 +21,8 @@ public class UserProfile extends BaseApp{
     }
 
     public void activateUser(CoordinateFO body, String token){
-        UserProfileDAO temp = new UserProfileDAO();
         String username =  getUsernameFromToken(token);
-
-        temp.setUsername(username);
-        temp.setActivated(true);
-        userProfileBO.save(temp);
+        userProfileBO.activateUser(username);
         gameBoardBO.activateUser(username, body.getX(), body.getY());
     }
 

@@ -17,15 +17,15 @@ public class Purchase extends BaseApp {
     }
 
     public boolean buyMarine(String token,CoordinateFO coord){
-        return buyUnit(token, coord, UnitTypes.MARINE, gameConstants.marinePrice);
+        return buyUnit(token, coord, UnitTypes.MARINE, gameConstants.marinePrice, gameConstants.marineHealth);
     }
 
     public boolean buyMedic(String token,CoordinateFO coord){
-        return buyUnit(token, coord, UnitTypes.MEDIC, gameConstants.medicPrice);
+        return buyUnit(token, coord, UnitTypes.MEDIC, gameConstants.medicPrice, gameConstants.medicHealth);
     }
 
     public boolean buySniper(String token,CoordinateFO coord){
-        return buyUnit(token, coord, UnitTypes.SNIPER, gameConstants.sniperPrice);
+        return buyUnit(token, coord, UnitTypes.SNIPER, gameConstants.sniperPrice, gameConstants.sniperHealth);
     }
 
     private boolean buyBuilding(CoordinateFO coord, String token, int Price, BuildingTypes type) {
@@ -39,12 +39,12 @@ public class Purchase extends BaseApp {
         }
     }
 
-    private boolean buyUnit(String token, CoordinateFO coord, UnitTypes unitType, int price) {
+    private boolean buyUnit(String token, CoordinateFO coord, UnitTypes unitType, int price, int health) {
         String username = getUsernameFromToken(token);
 
         if (userProfileBO.checkEnoughGold(username, price)) {
             userProfileBO.chargeGold(username, price);
-            gameBoardBO.purchaseUnit(username, coord, unitType);
+            gameBoardBO.activateUnit(username, coord, unitType, health);
             return true;
         }
         else {

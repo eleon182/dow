@@ -19,10 +19,13 @@ public class UserProfileBO extends MainBO{
         return response;
     }
 
-    public void save(UserProfileDAO user) {
-        userProfileData.save(user);
-    }
+    public void activateUser(String username){
+        UserProfileDAO temp = new UserProfileDAO();
 
+        temp.setUsername(username);
+        temp.setActivated(true);
+        userProfileData.save(temp);
+    }
     public boolean checkEnoughGold(String username, int gold) {
         UserProfileDAO user = userProfileData.getUserData(username);
 
