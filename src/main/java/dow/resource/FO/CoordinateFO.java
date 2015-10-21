@@ -7,6 +7,16 @@ public class CoordinateFO{
     private String x;
     private String y;
 
+    public CoordinateFO(String x) {
+        this.x = x;
+    }
+
+    public CoordinateFO(String x, String y) {
+
+        this.x = x;
+        this.y = y;
+    }
+
     public String getX() {
         return x;
     }

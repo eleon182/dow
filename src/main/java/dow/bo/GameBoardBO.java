@@ -1,5 +1,4 @@
 package dow.bo;
-import dow.data.GameBoardData;
 import dow.data.dao.GameBoardDAO;
 import dow.defaults.BuildingTypes;
 import dow.defaults.UnitTypes;
@@ -10,8 +9,7 @@ import java.util.List;
 /**
  * Created by steve on 10/19/15.
  */
-public class GameBoardBO {
-    GameBoardData gameBoardData = new GameBoardData();
+public class GameBoardBO extends MainBO{
 
     public List<GameBoardDAO> getGameBoardData() {
         return gameBoardData.getGameBoard();
@@ -70,24 +68,19 @@ public class GameBoardBO {
         }
     }
 
-    private void buyBuilding(String username, CoordinateFO coord, BuildingTypes type) {
+    public void buyBuilding(String username, CoordinateFO coord, BuildingTypes type) {
         GameBoardDAO board = new GameBoardDAO();
 
         board.setX(coord.getX());
         board.setY(coord.getY());
-        board.setUnitType(type.toString());
-        board.setUnitHealth(100);
+        board.setBuildingType(type.toString());
+        board.setBuildingHealth(gameConstants.buildingHealth);
         board.setOwner(username);
 
         gameBoardData.saveSector(board);
     }
 
     private GameBoardDAO getSector(String username, CoordinateFO coord) {
-        GameBoardDAO sector = new GameBoardDAO();
-
-        sector.setX(coord.getX());
-        sector.setY(coord.getY());
-
-        return gameBoardData.getSector(sector);
+        return new GameBoardDAO(coord.getX(), coord.getY());
     }
 }

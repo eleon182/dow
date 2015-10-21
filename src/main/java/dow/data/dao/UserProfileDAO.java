@@ -26,6 +26,19 @@ public class UserProfileDAO{
         return activated;
     }
 
+    public UserProfileDAO() {
+    }
+
+    public UserProfileDAO(String username, String password, boolean activated, Integer gold, String createDate, String updateDate) {
+
+        this.username = username;
+        this.password = password;
+        this.activated = activated;
+        this.gold = gold;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
     public boolean getActivated() {
         return activated;
     }

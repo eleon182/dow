@@ -9,16 +9,16 @@ import dow.resource.FO.CoordinateFO;
  */
 public class UserProfile extends BaseApp{
 
-    public UserProfileTO getUserProfile(String username) {
-        return userProfileBO.getUserProfileData(username);
+    public UserProfileTO getUserProfile(String token) {
+        return userProfileBO.getUserProfileData(getUsernameFromToken(token));
     }
 
     public String getToken(String username, String password) {
-        return userProfileBO.getToken(username, password);
+        return userTokenBO.getToken(username, password);
     }
 
     public boolean validateToken(String token) {
-        return userProfileBO.validateToken(token);
+        return userTokenBO.validateToken(token);
     }
 
     public void activateUser(CoordinateFO body, String token){
@@ -32,10 +32,10 @@ public class UserProfile extends BaseApp{
     }
 
     public String addUser(String username, String password) {
-        return userProfileBO.addUser(username, password);
+        return userTokenBO.addUser(username, password);
     }
 
     public boolean checkActivation(String token){
-        return userProfileBO.checkActivated(getUsernameFromToken(token));
+        return userTokenBO.checkActivated(getUsernameFromToken(token));
     }
 }

@@ -11,6 +11,18 @@ public class UserTokenDAO{
 
     private String username;
     private String token;
+
+    public UserTokenDAO(String username) {
+        this.username = username;
+    }
+
+    public UserTokenDAO(String username, String token, String createDate) {
+
+        this.username = username;
+        this.token = token;
+        this.createDate = createDate;
+    }
+
     private String createDate;
 
     @DynamoDBHashKey

@@ -13,5 +13,7 @@ public class GameConstants {
     public int marinePrice = 50;
     public int sniperPrice = 75;
     public int medicPrice = 80;
+    public int buildingHealth = 300;
+    public int unitHealth = 100;
 
 }

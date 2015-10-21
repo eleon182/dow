@@ -14,6 +14,25 @@ public class GameBoardDAO {
     private String owner;
     private String unitType;
 
+    public GameBoardDAO() {
+    }
+
+    public GameBoardDAO(String x, String y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public GameBoardDAO(String x, String owner, String unitType, String buildingType, Integer unitHealth, Integer buildingHealth, String y, Integer gold) {
+        this.x = x;
+        this.owner = owner;
+        this.unitType = unitType;
+        this.buildingType = buildingType;
+        this.unitHealth = unitHealth;
+        this.buildingHealth = buildingHealth;
+        this.y = y;
+        this.gold = gold;
+    }
+
     public String getBuildingType() {
         return buildingType;
     }

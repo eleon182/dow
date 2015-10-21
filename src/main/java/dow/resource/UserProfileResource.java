@@ -17,19 +17,18 @@ public class UserProfileResource extends MainResource {
 
     UserProfile userProfile = new UserProfile();
 
-    @RequestMapping(value="/login", method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     ResponseEntity<?> login(@RequestBody LoginFO body) {
         String response = userProfile.getToken(body.getUsername(), body.getPassword());
-        if(response == null){
+        if (response == null) {
             return new ResponseEntity<>("", HttpStatus.UNAUTHORIZED);
-        }
-        else {
+        } else {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
 
 
-    @RequestMapping(value="/activate", method= RequestMethod.POST)
+    @RequestMapping(value = "/activate", method = RequestMethod.POST)
     ResponseEntity<?> activateAccount(@RequestBody CoordinateFO body, @RequestHeader(value = "Authorization") String token) {
         userProfile.activateUser(body, token);
         return new ResponseEntity<>(null, HttpStatus.OK);
@@ -39,19 +38,22 @@ public class UserProfileResource extends MainResource {
     ResponseEntity<?> checkActivation(@RequestHeader(value = "Authorization") String token) {
         if (userProfile.checkActivation(token)) {
             return new ResponseEntity<>("validated", HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
         }
     }
 
-    @RequestMapping(value="/registration", method= RequestMethod.POST)
+    @RequestMapping("/profile")
+    ResponseEntity<?> getUserProfile(@RequestHeader(value = "Authorization") String token) {
+        return new ResponseEntity<>(userProfile.getUserProfile(token), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     ResponseEntity<?> registration(@RequestBody LoginFO body) {
         String response = userProfile.addUser(body.getUsername(), body.getPassword());
-        if(response == null){
+        if (response == null) {
             return new ResponseEntity<>("", HttpStatus.UNAUTHORIZED);
-        }
-        else {
+        } else {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }

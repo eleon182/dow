@@ -1,4 +1,5 @@
 package dow.app;
+import dow.defaults.BuildingTypes;
 import dow.defaults.UnitTypes;
 import dow.resource.FO.CoordinateFO;
 
@@ -8,26 +9,11 @@ import dow.resource.FO.CoordinateFO;
 public class Purchase extends BaseApp {
 
     public boolean buySupplyDepot(CoordinateFO coord, String token) {
-        String username = getUsernameFromToken(token);
-
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, gameConstants.supplyDepotPrice)) {
-            userProfileBO.chargeGold(username, gameConstants.supplyDepotPrice);
-            gameBoardBO.buySupplyDepot(username, coord);
-            return true;
-        } else {
-            return false;
-        }
+        return buyBuilding(coord, token, gameConstants.supplyDepotPrice, BuildingTypes.SUPPLYDEPOT);
     }
 
-    public boolean buyFactory(CoordinateFO coord, String token) {
-        String username = getUsernameFromToken(token);
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, gameConstants.factoryPrice)) {
-            userProfileBO.chargeGold(username, gameConstants.factoryPrice);
-            gameBoardBO.buyFactory(username, coord);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean buyFactory(CoordinateFO coord, String token){
+        return buyBuilding(coord, token, gameConstants.factoryPrice, BuildingTypes.FACTORY);
     }
 
     public boolean buyMarine(String token,CoordinateFO coord){
@@ -40,6 +26,17 @@ public class Purchase extends BaseApp {
 
     public boolean buySniper(String token,CoordinateFO coord){
         return buyUnit(token, coord, UnitTypes.SNIPER, gameConstants.sniperPrice);
+    }
+
+    private boolean buyBuilding(CoordinateFO coord, String token, int Price, BuildingTypes type) {
+        String username = getUsernameFromToken(token);
+        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, gameConstants.factoryPrice)) {
+            userProfileBO.chargeGold(username, gameConstants.factoryPrice);
+            gameBoardBO.buyBuilding(username, coord, type);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean buyUnit(String token, CoordinateFO coord, UnitTypes unitType, int price) {
