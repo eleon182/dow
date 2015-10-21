@@ -36,6 +36,38 @@ public class PurchaseResource extends MainResource {
         }
     }
 
+    @RequestMapping(value="/marine", method= RequestMethod.POST)
+    ResponseEntity<?> purchaseMarine(@RequestBody CoordinateFO body, @RequestHeader(value = "Authorization") String token) {
+        if(purchase.buyMarine(token, body)){
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value="/medic", method= RequestMethod.POST)
+    ResponseEntity<?> purchaseMedic(@RequestBody CoordinateFO body, @RequestHeader(value = "Authorization") String token) {
+        if(purchase.buyMedic(token,body)){
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+    @RequestMapping(value="/sniper", method= RequestMethod.POST)
+    ResponseEntity<?> purchaseSniper(@RequestBody CoordinateFO body, @RequestHeader(value = "Authorization") String token) {
+        if(purchase.buySniper(token,body)){
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
 
 }
 

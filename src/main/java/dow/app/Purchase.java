@@ -1,6 +1,6 @@
 package dow.app;
 
-import dow.defaults.GameConstants;
+import dow.defaults.UnitTypes;
 import dow.resource.FO.CoordinateFO;
 
 /**
@@ -10,8 +10,9 @@ public class Purchase extends BaseApp {
 
     public boolean buySupplyDepot(CoordinateFO coord, String token) {
         String username = getUsernameFromToken(token);
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, GameConstants.supplyDepotPrice)) {
-            userProfileBO.chargeGold(username, GameConstants.supplyDepotPrice);
+
+        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, gameConstants.supplyDepotPrice)) {
+            userProfileBO.chargeGold(username, gameConstants.supplyDepotPrice);
             gameBoardBO.buySupplyDepot(username, coord);
             return true;
         } else {
@@ -21,11 +22,36 @@ public class Purchase extends BaseApp {
 
     public boolean buyFactory(CoordinateFO coord, String token) {
         String username = getUsernameFromToken(token);
-        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, GameConstants.factoryPrice)) {
-            userProfileBO.chargeGold(username, GameConstants.factoryPrice);
+        if (gameBoardBO.checkWorkerInSector(username, coord) && userProfileBO.checkEnoughGold(username, gameConstants.factoryPrice)) {
+            userProfileBO.chargeGold(username, gameConstants.factoryPrice);
             gameBoardBO.buyFactory(username, coord);
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean buyMarine(String token,CoordinateFO coord){
+        return buyUnit(token, coord, UnitTypes.MARINE, gameConstants.marinePrice);
+    }
+
+    public boolean buyMedic(String token,CoordinateFO coord){
+        return buyUnit(token, coord, UnitTypes.MEDIC, gameConstants.medicPrice);
+    }
+
+    public boolean buySniper(String token,CoordinateFO coord){
+        return buyUnit(token, coord, UnitTypes.SNIPER, gameConstants.sniperPrice);
+    }
+
+    private boolean buyUnit(String token, CoordinateFO coord, UnitTypes unitType, int price) {
+        String username = getUsernameFromToken(token);
+
+        if (userProfileBO.checkEnoughGold(username, price)) {
+            userProfileBO.chargeGold(username, price);
+            gameBoardBO.purchaseUnit(username, coord, unitType);
+            return true;
+        }
+        else {
             return false;
         }
     }

@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
+import dow.defaults.GameConstants;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class AWSDatabase {
     private DynamoDBMapper mapper;
     private AmazonDynamoDB aws;
+    GameConstants gameConstants = new GameConstants();
 
     public AWSDatabase() {
         aws = new AmazonDynamoDBClient(new ProfilesConfigFile().getCredentials("steve"));

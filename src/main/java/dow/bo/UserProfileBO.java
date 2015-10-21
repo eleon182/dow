@@ -26,18 +26,18 @@ public class UserProfileBO {
 
     public String getToken(String username, String password) {
         UserProfileDAO user = userProfileData.getUserData(username);
-        if (user==null || !BCrypt.checkpw(password, user.getPassword())) {
+        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
             return null;
         } else {
             return userTokenData.createToken(username);
         }
     }
 
-    public String getUsername(String token){
+    public String getUsername(String token) {
         return userTokenData.getUsername(token);
     }
 
-    public boolean checkActivated(String username){
+    public boolean checkActivated(String username) {
         return userProfileData.getUserData(username).getActivated();
     }
 
@@ -45,41 +45,38 @@ public class UserProfileBO {
         return userTokenData.validateToken(token);
     }
 
-    public void save(UserProfileDAO user){
+    public void save(UserProfileDAO user) {
         userProfileData.save(user);
     }
 
     public String addUser(String username, String password) {
-        if(userProfileData.getUserData(username)!=null){
+        if (userProfileData.getUserData(username) != null) {
             return null;
-        }
-        else {
+        } else {
             userProfileData.addUser(username, BCrypt.hashpw(password, BCrypt.gensalt(12)));
             return userTokenData.createToken(username);
         }
     }
 
-    public boolean checkEnoughGold(String username, int  gold){
+    public boolean checkEnoughGold(String username, int gold) {
         UserProfileDAO user = userProfileData.getUserData(username);
 
-        if(user.getGold() > gold){
+        if (user.getGold() < gold) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
-    public void chargeGold(String username, int gold){
+    public void chargeGold(String username, int gold) {
         UserProfileDAO user = userProfileData.getUserData(username);
 
         int newGold = user.getGold();
 
-        if(newGold > gold){
+        if (newGold < gold) {
             newGold = 0;
-        }
-        else {
-            newGold = newGold-gold;
+        } else {
+            newGold = newGold - gold;
         }
 
         user.setGold(newGold);
