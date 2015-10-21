@@ -13,7 +13,26 @@ public class GameBoardDAO {
     private String x;
     private String owner;
     private String unitType;
+
+    public String getBuildingType() {
+        return buildingType;
+    }
+
+    public Integer getBuildingHealth() {
+        return buildingHealth;
+    }
+
+    public void setBuildingHealth(Integer buildingHealth) {
+        this.buildingHealth = buildingHealth;
+    }
+
+    public void setBuildingType(String buildingType) {
+        this.buildingType = buildingType;
+    }
+
+    private String buildingType;
     private Integer unitHealth;
+    private Integer buildingHealth;
 
     public String getUnitType() {
         return unitType;

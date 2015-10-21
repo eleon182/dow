@@ -1,7 +1,7 @@
 package dow.bo;
-
 import dow.data.GameBoardData;
 import dow.data.dao.GameBoardDAO;
+import dow.defaults.BuildingTypes;
 import dow.defaults.UnitTypes;
 import dow.resource.FO.CoordinateFO;
 
@@ -33,14 +33,14 @@ public class GameBoardBO {
     }
 
     public void buySupplyDepot(String username, CoordinateFO coord) {
-        buy(username, coord, UnitTypes.SUPPLYDEPOT);
+        buyBuilding(username, coord, BuildingTypes.SUPPLYDEPOT);
     }
 
     public void buyFactory(String username, CoordinateFO coord) {
-        buy(username, coord, UnitTypes.FACTORY);
+        buyBuilding(username, coord, BuildingTypes.FACTORY);
     }
 
-    public void purchaseUnit(String username, CoordinateFO coord, UnitTypes unitType){
+    public void purchaseUnit(String username, CoordinateFO coord, UnitTypes unitType) {
         GameBoardDAO sector = new GameBoardDAO();
 
         sector.setOwner(username);
@@ -53,20 +53,11 @@ public class GameBoardBO {
 
     public boolean checkFactoryInSector(String username, CoordinateFO coord) {
         GameBoardDAO sector = getSector(username, coord);
-        if (sector != null && sector.getUnitType() == UnitTypes.FACTORY.toString()) {
+        if (sector != null && sector.getBuildingType() == BuildingTypes.FACTORY.toString()) {
             return true;
         } else {
             return false;
         }
-    }
-
-    private GameBoardDAO getSector(String username, CoordinateFO coord) {
-        GameBoardDAO sector = new GameBoardDAO();
-
-        sector.setX(coord.getX());
-        sector.setY(coord.getY());
-
-        return gameBoardData.getSector(sector);
     }
 
     public boolean checkWorkerInSector(String username, CoordinateFO coord) {
@@ -79,7 +70,7 @@ public class GameBoardBO {
         }
     }
 
-    private void buy(String username, CoordinateFO coord, UnitTypes type) {
+    private void buyBuilding(String username, CoordinateFO coord, BuildingTypes type) {
         GameBoardDAO board = new GameBoardDAO();
 
         board.setX(coord.getX());
@@ -89,5 +80,14 @@ public class GameBoardBO {
         board.setOwner(username);
 
         gameBoardData.saveSector(board);
+    }
+
+    private GameBoardDAO getSector(String username, CoordinateFO coord) {
+        GameBoardDAO sector = new GameBoardDAO();
+
+        sector.setX(coord.getX());
+        sector.setY(coord.getY());
+
+        return gameBoardData.getSector(sector);
     }
 }

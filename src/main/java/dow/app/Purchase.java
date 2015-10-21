@@ -1,5 +1,4 @@
 package dow.app;
-
 import dow.defaults.UnitTypes;
 import dow.resource.FO.CoordinateFO;
 

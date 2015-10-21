@@ -24,7 +24,7 @@ public class MainResource {
         return new ResponseEntity<>(temp.listTables(), HttpStatus.OK);
     }
 
-    @RequestMapping("/game")
+    @RequestMapping("/game")`
     ResponseEntity<?> gameConstants() {
         return new ResponseEntity<>(new GameConstants(), HttpStatus.OK);
     }
